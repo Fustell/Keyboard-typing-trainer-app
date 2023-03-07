@@ -1,38 +1,36 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<VBox alignment="CENTER" prefHeight="363.0" prefWidth="557.0" spacing="20.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.roman.keyboardtypertrainer.Controller">
-    <padding>
-        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
-    </padding>
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="244.0" prefWidth="425.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.roman.keyboardtypertrainer.Controller">
    <children>
-      <MenuBar prefHeight="25.0" prefWidth="700.0">
+      <MenuBar layoutY="2.0">
         <menus>
           <Menu mnemonicParsing="false" text="File">
             <items>
-              <MenuItem mnemonicParsing="false" text="Close" />
+              <MenuItem fx:id="closeButton" mnemonicParsing="false" onAction="#closeApp" text="Close" />
             </items>
           </Menu>
           <Menu mnemonicParsing="false" text="Edit">
             <items>
-              <MenuItem fx:id="updateWordsButton" mnemonicParsing="false" onAction="#updateWords" text="Update words" />
-            </items>
-          </Menu>
-          <Menu mnemonicParsing="false" text="Help">
-            <items>
-              <MenuItem mnemonicParsing="false" text="About" />
+              <MenuItem fx:id="updateWordsButton" mnemonicParsing="false" onAction="#updateWords" text="Load new words" />
             </items>
           </Menu>
         </menus>
       </MenuBar>
-      <AnchorPane prefHeight="334.0" prefWidth="517.0">
-         <children>
-            <TextField fx:id="textInput" layoutX="115.0" layoutY="137.0" onKeyTyped="#textAreaTyped" prefHeight="50.0" prefWidth="287.0" />
-            <Label fx:id="textOutput" layoutX="185.0" layoutY="98.0" prefHeight="17.0" prefWidth="105.0" />
-         </children>
-      </AnchorPane>
+      <TextField fx:id="textInput" layoutX="132.0" layoutY="96.0" onKeyTyped="#textAreaTyped" />
+      <Label fx:id="textOutput" layoutX="179.0" layoutY="56.0" text="undefined" />
+      <Label fx:id="wordsCounter" layoutX="105.0" layoutY="150.0" text="0">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Label>
+      <Label fx:id="labelWordsCounter" layoutX="48.0" layoutY="185.0" text="words per minute">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
    </children>
-</VBox>
+</AnchorPane>
