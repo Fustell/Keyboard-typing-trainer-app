@@ -4,7 +4,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="244.0" prefWidth="425.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.roman.keyboardtypertrainer.Controller">
+<AnchorPane fx:id="scenePanel" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="244.0" prefWidth="425.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.roman.keyboardtypertrainer.Controller">
    <children>
       <MenuBar layoutY="2.0">
         <menus>
@@ -22,14 +22,22 @@
       </MenuBar>
       <TextField fx:id="textInput" layoutX="132.0" layoutY="96.0" onKeyTyped="#textAreaTyped" />
       <Label fx:id="textOutput" layoutX="179.0" layoutY="56.0" text="undefined" />
-      <Label fx:id="wordsCounter" layoutX="105.0" layoutY="150.0" text="0">
+      <Label fx:id="wordsCounter" layoutX="58.0" layoutY="150.0" text="0">
          <font>
-            <Font size="24.0" />
+            <Font name="System Bold" size="24.0" />
          </font>
       </Label>
-      <Label fx:id="labelWordsCounter" layoutX="48.0" layoutY="185.0" text="words per minute">
+      <Label fx:id="labelWordsCounter" layoutX="22.0" layoutY="185.0" prefHeight="25.0" prefWidth="98.0" text="words per minute" />
+      <Label fx:id="sumAllNumbers" layoutX="199.0" layoutY="150.0" text="0">
          <font>
-            <Font size="18.0" />
+            <Font name="System Bold" size="24.0" />
+         </font>
+      </Label>
+      <Label fx:id="counterWordsLabel" layoutX="175.0" layoutY="189.0" text="counter words" />
+      <Label fx:id="counterMistakesLabel" layoutX="313.0" layoutY="189.0" prefHeight="17.0" prefWidth="98.0" text="counter mistakes" />
+      <Label fx:id="counterMistake" layoutX="355.0" layoutY="150.0" text="0">
+         <font>
+            <Font name="System Bold" size="24.0" />
          </font>
       </Label>
    </children>

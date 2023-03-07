@@ -1,70 +1,51 @@
 package com.roman.keyboardtypertrainer;
 
-import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.net.URL;
-import java.util.*;
+import java.util.ArrayDeque;
+import java.util.Deque;
+import java.util.ResourceBundle;
 
 public class Controller  implements Initializable {
 
     @FXML
-    private Label textOutput;
+    private Label textOutput,wordsCounter, sumAllNumbers, counterMistake;
     @FXML
     private TextField textInput;
     @FXML
-    private Label wordsCounter;
+    private AnchorPane scenePanel;
 
-    private Deque<String> dataText;
+    private Deque<String> words;
     private boolean flag;
-    private int wordsPerMinute;
+    private int wordsPerMinute, numberWords, mistakes;
     private Long timeStart;
 
     public Controller(){
-        this.dataText = new ArrayDeque<>();
+        this.words = new ArrayDeque<>();
         this.flag = false;
     }
 
     public void uploadWords(File file){
-        try {
-            File myObj = new File(file.toURI());
-            Scanner myReader = new Scanner(myObj);
-            this.dataText.clear();
-            while (myReader.hasNextLine()) {
-                this.dataText.addAll(List.of(myReader.nextLine().split(" ")));
-            }
-            this.textOutput.setText(this.dataText.pop());
-            myReader.close();
-        } catch (FileNotFoundException e) {
-            System.out.println("File is not found.");
-            e.printStackTrace();
-        }
+        this.words.clear();
+        this.words = FileHandler.readWordsFromFile(String.valueOf(file));
+        this.textOutput.setText(this.words.pop());
     }
 
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        try {
-            File myObj = new File(Controller.class.getResource("data/words.txt").getFile());
-            Scanner myReader = new Scanner(myObj);
-            while (myReader.hasNextLine()) {
-                this.dataText.addAll(List.of(myReader.nextLine().split(" ")));
-            }
-            this.textOutput.setText(this.dataText.pop());
-            myReader.close();
-        } catch (FileNotFoundException e) {
-            System.out.println("File is not found.");
-            e.printStackTrace();
-        }
+        this.words = FileHandler.readWordsFromFile(Controller.class.getResource("data/words.txt").getFile());
+        this.textOutput.setText(this.words.pop());
     }
 
     public void updateWords(ActionEvent event) {
@@ -76,6 +57,7 @@ public class Controller  implements Initializable {
 
     public void textAreaTyped(KeyEvent event){
 
+        // start recording
         if (!this.flag){
             this.timeStart = System.currentTimeMillis();
             this.flag = true;
@@ -83,6 +65,7 @@ public class Controller  implements Initializable {
 
         long timenow = System.currentTimeMillis();
 
+        // checks if 1 minute passed
         if(timenow >= (this.timeStart + 60*1000)){
             wordsCounter.setText(String.valueOf(this.wordsPerMinute));
             this.timeStart = System.currentTimeMillis();
@@ -90,21 +73,32 @@ public class Controller  implements Initializable {
         }
 
 
+        // removes spaces before word
         if(this.textInput.getText().equals(" ")){
             this.textInput.setText("");
         }
 
-        if(this.textInput.getText().equals(this.textOutput.getText()) && !this.dataText.isEmpty()){
-            String inputString = this.dataText.pop();
+        // if textInput doesn't coincide with textOutput
+        if(!this.textOutput.getText().startsWith(this.textInput.getText())){
+            mistakes++;
+            this.counterMistake.setText(String.valueOf(mistakes));
+        }
+
+        // updates text in label and changes word
+        if(this.textInput.getText().equals(this.textOutput.getText()) && !this.words.isEmpty()){
+            String inputString = this.words.pop();
             this.textOutput.setText(inputString);
             this.textInput.setPromptText(inputString);
             this.textInput.setText("");
             this.wordsPerMinute++;
+            this.numberWords++;
+            sumAllNumbers.setText(String.valueOf(numberWords));
         }
     }
 
     public void closeApp(ActionEvent event){
-        Platform.exit();
-        System.exit(0);
+
+        Stage stage  = (Stage) scenePanel.getScene().getWindow();
+        stage.close();
     }
 }
