@@ -1,2 +1,5 @@
-package com.roman.keyboardtypertrainer;public class FileHandler {
+package com.roman.keyboardtypertrainer;
+
+public class FileHandler {
+
 }

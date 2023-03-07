@@ -3,6 +3,6 @@ module com.example.keyboardtypertrainer {
     requires javafx.fxml;
 
 
-    opens com.example.keyboardtypertrainer to javafx.fxml;
-    exports com.example.keyboardtypertrainer;
+    opens com.roman.keyboardtypertrainer to javafx.fxml;
+    exports com.roman.keyboardtypertrainer;
 }

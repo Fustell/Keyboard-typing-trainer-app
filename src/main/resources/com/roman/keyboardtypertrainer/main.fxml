@@ -4,13 +4,35 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<VBox alignment="CENTER" prefHeight="503.0" prefWidth="899.0" spacing="20.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.keyboardtypertrainer.Controller">
+<VBox alignment="CENTER" prefHeight="363.0" prefWidth="557.0" spacing="20.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.roman.keyboardtypertrainer.Controller">
     <padding>
         <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
     </padding>
    <children>
-      <TextArea fx:id="myTextArea" disable="true" onKeyTyped="#textAreaTyped" prefHeight="222.0" prefWidth="702.0" text="this is an example of text" />
-      <TextField prefHeight="51.0" prefWidth="702.0" />
-      <StackPane prefHeight="150.0" prefWidth="200.0" />
+      <MenuBar prefHeight="25.0" prefWidth="700.0">
+        <menus>
+          <Menu mnemonicParsing="false" text="File">
+            <items>
+              <MenuItem mnemonicParsing="false" text="Close" />
+            </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="Edit">
+            <items>
+              <MenuItem fx:id="updateWordsButton" mnemonicParsing="false" onAction="#updateWords" text="Update words" />
+            </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="Help">
+            <items>
+              <MenuItem mnemonicParsing="false" text="About" />
+            </items>
+          </Menu>
+        </menus>
+      </MenuBar>
+      <AnchorPane prefHeight="334.0" prefWidth="517.0">
+         <children>
+            <TextField fx:id="textInput" layoutX="115.0" layoutY="137.0" onKeyTyped="#textAreaTyped" prefHeight="50.0" prefWidth="287.0" />
+            <Label fx:id="textOutput" layoutX="185.0" layoutY="98.0" prefHeight="17.0" prefWidth="105.0" />
+         </children>
+      </AnchorPane>
    </children>
 </VBox>
