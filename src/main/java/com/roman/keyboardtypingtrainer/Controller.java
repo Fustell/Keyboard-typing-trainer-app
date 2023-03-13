@@ -1,4 +1,4 @@
-package com.roman.keyboardtypertrainer;
+package com.roman.keyboardtypingtrainer;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -16,8 +16,7 @@ import java.util.ArrayDeque;
 import java.util.Deque;
 import java.util.ResourceBundle;
 
-public class Controller  implements Initializable {
-
+public class Controller implements Initializable {
     @FXML
     private Label textOutput,wordsCounter, sumAllNumbers, counterMistake;
     @FXML
@@ -37,14 +36,15 @@ public class Controller  implements Initializable {
 
     public void uploadWords(File file){
         this.words.clear();
-        this.words = FileHandler.readWordsFromFile(String.valueOf(file));
+        this.words = FileHandler.readWordsFromExternalFile(String.valueOf(file));
         this.textOutput.setText(this.words.pop());
     }
 
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        this.words = FileHandler.readWordsFromFile(Controller.class.getResource("data/words.txt").getFile());
+
+        this.words = FileHandler.readWordsFromFile("data/words.txt");
         this.textOutput.setText(this.words.pop());
     }
 

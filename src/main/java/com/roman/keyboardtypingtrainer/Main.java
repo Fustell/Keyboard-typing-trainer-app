@@ -1,4 +1,4 @@
-package com.roman.keyboardtypertrainer;
+package com.roman.keyboardtypingtrainer;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -16,7 +16,6 @@ public class Main extends Application {
         stage.setScene(scene);
         stage.show();
     }
-
     public static void main(String[] args) {
         launch();
     }

@@ -1,8 +1,8 @@
-module com.example.keyboardtypertrainer {
+module com.roman.keyboardtypingtrainer.keyboardtypingtrainer {
     requires javafx.controls;
     requires javafx.fxml;
 
 
-    opens com.roman.keyboardtypertrainer to javafx.fxml;
-    exports com.roman.keyboardtypertrainer;
+    opens com.roman.keyboardtypingtrainer to javafx.fxml;
+    exports com.roman.keyboardtypingtrainer;
 }
